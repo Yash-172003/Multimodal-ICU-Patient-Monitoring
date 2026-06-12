@@ -147,7 +147,7 @@ frontend/
 | File | Purpose |
 |------|---------|
 | **[src/components/Dashboard.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/src/pages/Dashboard.jsx)** | Main dashboard with patient grid, summary cards, vital charts |
-| **[src/components/PatientsList.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/src/pages/PatientsList.jsx)** | Scrollable list of patients with latest vitals and risk scores |
+| **[src/components/PatientsList.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/src/pages/PatientList.jsx)** | Scrollable list of patients with latest vitals and risk scores |
 | **[src/components/PatientDetail.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/src/pages/PatientDetail.jsx)** | Individual patient detail page with full history |
 | **[src/components/VitalsChart.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/src/components/VitalsChart.jsx)** | Real-time vital signs line charts (HR, BP, SpO₂, RR, Temp) |
 | **[src/components/RiskTimeline.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/src/components/Timeline.jsx)** | Area chart of risk score history over time |
@@ -177,13 +177,13 @@ docs/
 
 | Document | Purpose | Link |
 |----------|---------|------|
-| **Project Structure** | Folder organization, file purposes, dev practices | [View](icu_system/docs/project_structure.md) |
-| **API Reference** | Endpoint documentation, request/response examples | [View](icu_system/docs/api.md) |
-| **Deployment** | Docker, Railway, Render, AWS setup | [View](icu_system/docs/deployment.md) |
-| **Implementation Summary** | Project overview and implementation details | [View](icu_system/docs/implementation_summary.md) |
-| **Interview Presentation** | Project presentation materials | [View](icu_system/docs/interview_presentation.md) |
-| **Patient Profiles** | Sample patient data and use cases | [View](icu_system/docs/patient_profiles.md) |
-| **User Guide** | How to use the system | [View](icu_system/docs/user_guide.md) |
+| **Project Structure** | Folder organization, file purposes, dev practices | [View](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/docs/project_structure.md) |
+| **API Reference** | Endpoint documentation, request/response examples | [View](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/docs/api.md) |
+| **Deployment** | Docker, Railway, Render, AWS setup | [View](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/docs/deployment.md) |
+| **Implementation Summary** | Project overview and implementation details | [View](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/docs/implementation_summary.md) |
+| **Interview Presentation** | Project presentation materials | [View](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/docs/interview_presentation.md) |
+| **Patient Profiles** | Sample patient data and use cases | [View](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/docs/patient_profiles.md) |
+| **User Guide** | How to use the system | [View](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/docs/user_guide.md) |
 
 ## Root Level Configuration Files
 
