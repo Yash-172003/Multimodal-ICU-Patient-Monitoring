@@ -102,27 +102,53 @@ docker compose up --build
 
 ## Project Structure
 ```
-icu_system/
- ├── backend/
- │    ├── app.py
- │    ├── config.py
- │    ├── requirements.txt
- │    ├── database/
- │    │    ├── db.py
- │    │    ├── seed_data.py
- │    │    └── migrations/001_init.sql
- │    ├── models/
- │    ├── routes/
- │    ├── utils/
- │    └── ml/
- ├── frontend/
- │    ├── index.html
- │    ├── package.json
- │    ├── vite.config.js
- │    └── src/
- ├── docs/
- │    ├── api.md
- │    └── deployment.md
- ├── docker-compose.yml
- └── README.md
+## Project Structure
+
+```text
+Multimodal-ICU-Patient-Monitoring/
+│
+├── icu_system/
+│   ├── backend/
+│   │   ├── app.py
+│   │   ├── config.py
+│   │   ├── requirements.txt
+│   │   │
+│   │   ├── database/
+│   │   │   ├── db.py
+│   │   │   ├── seed_data.py
+│   │   │   └── migrations/
+│   │   │       └── 001_init.sql
+│   │   │
+│   │   ├── ml/
+│   │   │   ├── train_model.py
+│   │   │   ├── retrain.py
+│   │   │   ├── preprocess.py
+│   │   │   ├── predict.py
+│   │   │   └── checkpoints/
+│   │   │
+│   │   ├── models/
+│   │   ├── routes/
+│   │   └── utils/
+│   │
+│   ├── frontend/
+│   │   ├── src/
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   ├── vite.config.js
+│   │   ├── tailwind.config.js
+│   │   ├── postcss.config.js
+│   │   └── nginx.conf
+│   │
+│   ├── docs/
+│   │   ├── api.md
+│   │   └── deployment.md
+│   │
+│   ├── docker-compose.yml
+│   └── README.md
+│
+├── package-lock.json
+├── .gitignore
+└── LICENSE
+```
+
 ```
