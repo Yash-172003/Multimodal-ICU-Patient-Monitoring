@@ -70,17 +70,17 @@ backend/
 
 | File | Purpose |
 |------|---------|
-| **[app.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/app.py)** | FastAPI application entry point, route registration, WebSocket setup, CORS configuration |
-| **[config.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/config.py)** | Settings from environment variables, database URL, API configuration, logging |
-| **[requirements.txt](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/requirements.txt)** | Python dependencies: fastapi, sqlalchemy, torch, transformers, asyncpg, apscheduler, etc. |
-| **[database/db.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/database/db.py)** | SQLAlchemy engine, session factory, connection pooling, database initialization |
-| **[database/models.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/database/models.py)** | ORM models: Patient, Vitals, RiskPrediction, ClinicalNotes tables and relationships |
-| **[database/seed_data.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/database/seed_data.py)** | Generates synthetic test patients and vital sign data for development |
-| **[ml/train_model.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/ml/train_model.py)** | Multimodal model training: LSTM (vitals) + ClinicalBERT (notes) fusion network |
-| **[ml/predict.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/ml/predict.py)** | Real-time and batch prediction functions for risk score computation |
-| **[api/patients.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/api/patients.py)** | CRUD operations for patients, search, filtering, pagination |
-| **[api/vitals.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/api/vitals.py)** | WebSocket vitals streaming, historical data retrieval, latest readings |
-| **[api/predictions.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/api/predictions.py)** | Risk score endpoint, on-demand predictions, prediction history |
+| **[app.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/backend/app.py)** | FastAPI application entry point, route registration, WebSocket setup, CORS configuration |
+| **[config.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/backend/config.py)** | Settings from environment variables, database URL, API configuration, logging |
+| **[requirements.txt](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/backend/requirements.txt)** | Python dependencies: fastapi, sqlalchemy, torch, transformers, asyncpg, apscheduler, etc. |
+| **[database/db.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/backend/database/db.py)** | SQLAlchemy engine, session factory, connection pooling, database initialization |
+| **[database/models.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/backend/ml/models.py)** | ORM models: Patient, Vitals, RiskPrediction, ClinicalNotes tables and relationships |
+| **[database/seed_data.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/backend/database/seed_data.py)** | Generates synthetic test patients and vital sign data for development |
+| **[ml/train_model.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/backend/ml/train_model.py)** | Multimodal model training: LSTM (vitals) + ClinicalBERT (notes) fusion network |
+| **[ml/predict.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/backend/ml/predict.py)** | Real-time and batch prediction functions for risk score computation |
+| **[api/patients.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/backend/routes/patients.py)** | CRUD operations for patients, search, filtering, pagination |
+| **[api/vitals.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/backend/models/vitals.py)** | WebSocket vitals streaming, historical data retrieval, latest readings |
+| **[api/predictions.py](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/backend/routes/predictions.py)** | Risk score endpoint, on-demand predictions, prediction history |
 
 ---
 
@@ -146,16 +146,14 @@ frontend/
 
 | File | Purpose |
 |------|---------|
-| **[src/components/Dashboard.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/src/components/Dashboard.jsx)** | Main dashboard with patient grid, summary cards, vital charts |
-| **[src/components/PatientsList.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/src/components/PatientsList.jsx)** | Scrollable list of patients with latest vitals and risk scores |
-| **[src/components/PatientDetail.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/src/components/PatientDetail.jsx)** | Individual patient detail page with full history |
-| **[src/components/VitalsChart.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/src/components/VitalsChart.jsx)** | Real-time vital signs line charts (HR, BP, SpO₂, RR, Temp) |
-| **[src/components/RiskTimeline.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/src/components/RiskTimeline.jsx)** | Area chart of risk score history over time |
-| **[src/hooks/useWebSocket.js](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/src/hooks/useWebSocket.js)** | WebSocket connection management and reconnection logic |
-| **[src/hooks/useApi.js](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/src/hooks/useApi.js)** | Wrapper around axios for REST API calls with error handling |
-| **[src/services/apiClient.js](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/src/services/apiClient.js)** | Axios instance with base URL, interceptors, authentication headers |
-| **[vite.config.js](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/vite.config.js)** | Vite configuration: API proxy, plugins, build optimization |
-| **[tailwind.config.js](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/tailwind.config.js)** | Tailwind CSS customization: colors, spacing, breakpoints, plugins |
+| **[src/components/Dashboard.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/src/pages/Dashboard.jsx)** | Main dashboard with patient grid, summary cards, vital charts |
+| **[src/components/PatientsList.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/src/pages/PatientsList.jsx)** | Scrollable list of patients with latest vitals and risk scores |
+| **[src/components/PatientDetail.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/src/pages/PatientDetail.jsx)** | Individual patient detail page with full history |
+| **[src/components/VitalsChart.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/src/components/VitalsChart.jsx)** | Real-time vital signs line charts (HR, BP, SpO₂, RR, Temp) |
+| **[src/components/RiskTimeline.jsx](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/src/components/Timeline.jsx)** | Area chart of risk score history over time |
+| **[src/services/apiClient.js](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/src/shared/api.js)** | Axios instance with base URL, interceptors, authentication headers |
+| **[vite.config.js](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/vite.config.js)** | Vite configuration: API proxy, plugins, build optimization |
+| **[tailwind.config.js](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/frontend/tailwind.config.js)** | Tailwind CSS customization: colors, spacing, breakpoints, plugins |
 
 ---
 
@@ -173,65 +171,27 @@ docs/
 ├── ML_MODEL.md               # Model architecture, training, evaluation
 └── CLINICAL.md               # Risk thresholds, clinical interpretation
 ```
-
-### Documentation Files
-
-| Document | Purpose |
-|----------|---------|
-| **[docs/API.md](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/docs/API.md)** | Complete REST API endpoint reference with request/response examples |
-| **[docs/ARCHITECTURE.md](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/docs/ARCHITECTURE.md)** | System design, data flow diagrams, ML pipeline details |
-| **[docs/DEPLOYMENT.md](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/docs/DEPLOYMENT.md)** | Step-by-step deployment guides for Docker, Railway, Render, AWS |
-| **[docs/DEVELOPMENT.md](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/docs/DEVELOPMENT.md)** | Environment setup, testing, debugging, development guidelines |
-| **[docs/ML_MODEL.md](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/docs/ML_MODEL.md)** | LSTM architecture, ClinicalBERT tokenization, training procedure, metrics |
-| **[docs/CLINICAL.md](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/docs/CLINICAL.md)** | Risk score interpretation, alert thresholds, clinical context |
-
 ---
+
+## 📚 Documentation Files
+
+| Document | Purpose | Link |
+|----------|---------|------|
+| **Project Structure** | Folder organization, file purposes, dev practices | [View](icu_system/docs/project_structure.md) |
+| **API Reference** | Endpoint documentation, request/response examples | [View](icu_system/docs/api.md) |
+| **Deployment** | Docker, Railway, Render, AWS setup | [View](icu_system/docs/deployment.md) |
+| **Implementation Summary** | Project overview and implementation details | [View](icu_system/docs/implementation_summary.md) |
+| **Interview Presentation** | Project presentation materials | [View](icu_system/docs/interview_presentation.md) |
+| **Patient Profiles** | Sample patient data and use cases | [View](icu_system/docs/patient_profiles.md) |
+| **User Guide** | How to use the system | [View](icu_system/docs/user_guide.md) |
 
 ## Root Level Configuration Files
 
 | File | Purpose |
 |------|---------|
-| **[docker-compose.yml](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/docker-compose.yml)** | Docker Compose configuration for local development (backend, frontend, database) |
+| **[docker-compose.yml](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/icu_system/docker-compose.yml)** | Docker Compose configuration for local development (backend, frontend, database) |
 | **[.gitignore](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/.gitignore)** | Git ignore patterns (node_modules, __pycache__, .env, venv, etc.) |
 | **[README.md](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/README.md)** | Project overview, quick start, features, deployment |
-| **[LICENSE](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/LICENSE)** | MIT License |
-
----
-
-## Repository Root Documentation Files
-
-### Educational & Reference Materials
-
-| File | Purpose | Link |
-|------|---------|------|
-| **IMPLEMENTATION_SUMMARY.md** | Technical implementation details and project overview | [View](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/IMPLEMENTATION_SUMMARY.md) |
-| **INTERVIEW_PRESENTATION.md** | Presentation materials for technical interviews | [View](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/INTERVIEW_PRESENTATION.md) |
-| **PATIENT_PROFILES.md** | Sample patient data, use cases, and clinical scenarios | [View](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/PATIENT_PROFILES.md) |
-| **USER_GUIDE.md** | End-user guide and system tutorials | [View](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/USER_GUIDE.md) |
-
----
-
-## Backend Configuration Files
-
-| File | Purpose |
-|------|---------|
-| **[backend/requirements.txt](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/requirements.txt)** | Python dependencies specification |
-| **[backend/Dockerfile](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/Dockerfile)** | Docker image definition for backend container |
-| **[backend/.env.example](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/backend/.env.example)** | Template for environment variables |
-
----
-
-## Frontend Configuration Files
-
-| File | Purpose |
-|------|---------|
-| **[frontend/package.json](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/package.json)** | Node.js dependencies and scripts |
-| **[frontend/vite.config.js](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/vite.config.js)** | Vite bundler configuration and optimization |
-| **[frontend/tailwind.config.js](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/tailwind.config.js)** | Tailwind CSS configuration and theming |
-| **[frontend/postcss.config.js](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/postcss.config.js)** | PostCSS configuration for Tailwind |
-| **[frontend/Dockerfile](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/Dockerfile)** | Docker image definition (Node build + Nginx) |
-| **[frontend/nginx.conf](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/nginx.conf)** | Nginx configuration for production serving |
-| **[frontend/.env.example](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/blob/main/frontend/.env.example)** | Template for frontend environment variables |
 
 ---
 
