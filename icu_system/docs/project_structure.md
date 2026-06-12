@@ -349,7 +349,6 @@ npm run test -- --coverage
 |----------|-----|
 | **Repository** | [github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring) |
 | **Issues** | [github.com/.../issues](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/issues) |
-| **Discussions** | [github.com/.../discussions](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/discussions) |
 | **Commits** | [github.com/.../commits](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/commits) |
 | **Branches** | [github.com/.../branches](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/branches) |
 
