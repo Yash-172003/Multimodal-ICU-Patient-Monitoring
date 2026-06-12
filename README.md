@@ -397,7 +397,6 @@ GitHub: [@Yash-172003](https://github.com/Yash-172003)
 
 - 📖 **Read the Docs**: Check [docs/](icu_system/docs/) for comprehensive guides
 - 🐛 **Report Issues**: [GitHub Issues](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/issues)
-- 💡 **Discussions**: [GitHub Discussions](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/discussions)
 - 📧 **Contact**: Open an issue or discussion for questions
 
 ---
