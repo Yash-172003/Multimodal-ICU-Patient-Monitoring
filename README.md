@@ -69,17 +69,13 @@ docker compose up --build
 
 | Document | Purpose | Link |
 |----------|---------|------|
-| **Project Structure** | Folder organization, file purposes, dev practices | [View](docs/PROJECT_STRUCTURE.md) |
-| **API Reference** | Endpoint documentation, request/response examples | [View](docs/API.md) |
-| **Architecture** | System design, data flow, ML pipeline | [View](docs/ARCHITECTURE.md) |
-| **Deployment** | Docker, Railway, Render, AWS setup | [View](docs/DEPLOYMENT.md) |
-| **Development** | Local setup, testing, debugging | [View](docs/DEVELOPMENT.md) |
-| **ML Model** | Model architecture, training, evaluation | [View](docs/ML_MODEL.md) |
-| **Clinical Guide** | Risk interpretation, thresholds, clinical context | [View](docs/CLINICAL.md) |
-| **Implementation Summary** | Project overview and implementation details | [View](IMPLEMENTATION_SUMMARY.md) |
-| **Interview Presentation** | Project presentation materials | [View](INTERVIEW_PRESENTATION.md) |
-| **Patient Profiles** | Sample patient data and use cases | [View](PATIENT_PROFILES.md) |
-| **User Guide** | How to use the system | [View](USER_GUIDE.md) |
+| **Project Structure** | Folder organization, file purposes, dev practices | [View](icu_system/docs/project_structure.md) |
+| **API Reference** | Endpoint documentation, request/response examples | [View](icu_system/docs/api.md) |
+| **Deployment** | Docker, Railway, Render, AWS setup | [View](icu_system/docs/deployment.md) |
+| **Implementation Summary** | Project overview and implementation details | [View](icu_system/docs/implementation_summary.md) |
+| **Interview Presentation** | Project presentation materials | [View](icu_system/docs/interview_presentation.md) |
+| **Patient Profiles** | Sample patient data and use cases | [View](icu_system/docs/patient_profiles.md) |
+| **User Guide** | How to use the system | [View](icu_system/docs/user_guide.md) |
 
 ---
 
@@ -252,7 +248,7 @@ Multimodal-ICU-Patient-Monitoring/
 └── package-lock.json              # Node dependencies lock
 ```
 
-**[View detailed structure →](docs/PROJECT_STRUCTURE.md)**
+**[View detailed structure →](icu_system/docs/project_structure.md)**
 
 ---
 
@@ -322,7 +318,7 @@ alembic upgrade head
 alembic revision --autogenerate -m "Your message"
 ```
 
-See [DEVELOPMENT.md](docs/DEVELOPMENT.md) for detailed setup.
+See [deployment.md](icu_system/docs/deployment.md) for detailed setup.
 
 ---
 
@@ -346,7 +342,7 @@ docker compose up --build
 - Frontend: Create Static Site with `frontend/` or Docker Web Service with `frontend/Dockerfile`
 
 **AWS/GCP/Azure**
-See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed cloud setup guides.
+See [deployment.md](icu_system/docs/deployment.md) for detailed cloud setup guides.
 
 ---
 
@@ -368,8 +364,6 @@ We welcome contributions! Here's how to help:
 - **Tests**: Write tests for new features, maintain >80% coverage
 - **Docs**: Update relevant documentation when adding features
 
-See [DEVELOPMENT.md](docs/DEVELOPMENT.md) for detailed guidelines.
-
 ---
 
 ## 📊 Project Statistics
@@ -379,26 +373,6 @@ See [DEVELOPMENT.md](docs/DEVELOPMENT.md) for detailed guidelines.
 - **Styling**: CSS/Tailwind, 1.2% of codebase
 - **Status**: Active development, 25+ commits
 - **License**: MIT (Open source)
-
----
-
-## 📖 Documentation Files
-
-### In Repository Root
-- **[README.md](README.md)** — This file, quick start and overview
-- **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)** — Technical implementation details
-- **[INTERVIEW_PRESENTATION.md](INTERVIEW_PRESENTATION.md)** — Presentation materials for interviews
-- **[PATIENT_PROFILES.md](PATIENT_PROFILES.md)** — Sample patient use cases
-- **[USER_GUIDE.md](USER_GUIDE.md)** — End-user guide and tutorials
-
-### In docs/ Directory
-- **[PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md)** — Complete folder organization guide
-- **[API.md](docs/API.md)** — REST API endpoint reference
-- **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** — System design and data flow
-- **[DEPLOYMENT.md](docs/DEPLOYMENT.md)** — Deployment and infrastructure guides
-- **[DEVELOPMENT.md](docs/DEVELOPMENT.md)** — Developer setup and testing
-- **[ML_MODEL.md](docs/ML_MODEL.md)** — Machine learning model details
-- **[CLINICAL.md](docs/CLINICAL.md)** — Clinical interpretation and thresholds
 
 ---
 
@@ -421,7 +395,7 @@ GitHub: [@Yash-172003](https://github.com/Yash-172003)
 
 ## 💬 Support & Questions
 
-- 📖 **Read the Docs**: Check [docs/](docs/) for comprehensive guides
+- 📖 **Read the Docs**: Check [docs/](icu_system/docs/) for comprehensive guides
 - 🐛 **Report Issues**: [GitHub Issues](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/issues)
 - 💡 **Discussions**: [GitHub Discussions](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/discussions)
 - 📧 **Contact**: Open an issue or discussion for questions
@@ -448,16 +422,6 @@ GitHub: [@Yash-172003](https://github.com/Yash-172003)
 - [ ] FDA validation and approval
 - [ ] Explainability features (LIME, SHAP)
 - [ ] Additional risk predictions (infection, sepsis, etc.)
-
----
-
-## 🎯 Next Steps
-
-1. **Explore**: Browse the [Project Structure](docs/PROJECT_STRUCTURE.md)
-2. **Learn**: Read the [Architecture Guide](docs/ARCHITECTURE.md)
-3. **Setup**: Follow the [Quick Start](#quick-start) above
-4. **Develop**: See [DEVELOPMENT.md](docs/DEVELOPMENT.md) for dev guidelines
-5. **Deploy**: Use [DEPLOYMENT.md](docs/DEPLOYMENT.md) for cloud setup
 
 ---
 
