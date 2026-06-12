@@ -22,8 +22,9 @@ Multimodal-ICU-Patient-Monitoring/
 │   ├── frontend/
 │   └── docker-compose.yml
 │
+├──.gitignore
+├── LICENSE
 ├── README.md
-├── .gitignore
 └── package-lock.json
 ```
 
