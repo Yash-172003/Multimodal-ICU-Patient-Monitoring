@@ -12,19 +12,31 @@ This document provides a comprehensive guide to the **Multimodal-ICU-Patient-Mon
 
 ```
 Multimodal-ICU-Patient-Monitoring/
-├── backend/                        # FastAPI server, ML models, database
-├── frontend/                       # React + Vite dashboard
-├── docs/                           # Detailed documentation
-├── docker-compose.yml              # Local development setup
-├── .gitignore                      # Git ignore rules
-├── README.md                       # Project overview
-├── LICENSE                         # MIT License
-├── IMPLEMENTATION_SUMMARY.md       # Implementation details
-├── INTERVIEW_PRESENTATION.md       # Interview materials
-├── PATIENT_PROFILES.md             # Sample patient data
-├── USER_GUIDE.md                   # User documentation
-└── package-lock.json               # Node dependencies lock
+├── backend/
+│   └── database/
+│       └── icu_monitoring.db
+│
+├── icu_system/
+│   ├── backend/
+│   ├── docs/
+│   ├── frontend/
+│   └── docker-compose.yml
+│
+├── README.md
+├── .gitignore
+└── package-lock.json
 ```
+
+### Description
+
+* **backend/database/** – Stores the SQLite database used by the system.
+* **icu_system/backend/** – FastAPI backend, database access layer, ML pipeline, routes, and utilities.
+* **icu_system/frontend/** – React + Vite frontend dashboard.
+* **icu_system/docs/** – Technical, deployment, implementation, and user documentation.
+* **icu_system/docker-compose.yml** – Multi-container local deployment configuration.
+* **README.md** – Project overview and setup instructions.
+* **.gitignore** – Git exclusion rules.
+* **package-lock.json** – Node dependency lock file.
 
 ---
 
@@ -32,39 +44,65 @@ Multimodal-ICU-Patient-Monitoring/
 
 ### Overview
 
-The backend is organized for clean separation of concerns using FastAPI, SQLAlchemy, and PyTorch.
+The backend is organized into database, machine learning, domain models, API routes, and utility modules.
 
 ```
-backend/
-├── app.py                   # FastAPI app initialization, main routes
-├── config.py                # Configuration, environment variables
-├── requirements.txt         # Python dependencies
-├── Dockerfile               # Container image
-├── .env.example            # Environment variables template
+icu_system/backend/
+├── database/
+│   ├── migrations/
+│   │   └── 001_init.sql
+│   ├── __init__.py
+│   ├── db.py
+│   └── seed_data.py
 │
-├── database/               # Database layer
-│   ├── db.py              # SQLAlchemy engine, session management
-│   ├── models.py          # ORM models (Patient, Vitals, Risk, Notes)
-│   └── seed_data.py       # Test data generation
+├── ml/
+│   ├── checkpoints/
+│   │   └── README.txt
+│   ├── __init__.py
+│   ├── models.py
+│   ├── predict.py
+│   ├── preprocess.py
+│   ├── retrain.py
+│   └── train_model.py
 │
-├── ml/                     # Machine learning pipeline
-│   ├── preprocess.py      # Data normalization, padding, tokenization
-│   ├── train_model.py     # Multimodal model training (LSTM + ClinicalBERT)
-│   ├── predict.py         # Single/batch prediction functions
-│   ├── retrain.py         # Periodic retraining logic
-│   └── checkpoints/       # Saved model weights and tokenizers
+├── models/
+│   ├── __init__.py
+│   ├── diagnosis.py
+│   ├── intervention.py
+│   ├── labs.py
+│   ├── medication.py
+│   ├── notes.py
+│   ├── nursing_assessment.py
+│   ├── patient.py
+│   ├── prediction.py
+│   ├── procedure.py
+│   ├── user.py
+│   └── vitals.py
 │
-├── api/                    # REST API endpoints
-│   ├── patients.py        # GET/POST patients, search, filtering
-│   ├── vitals.py          # Stream vitals, get history, latest readings
-│   ├── predictions.py     # Risk predictions, on-demand predict
-│   └── alerts.py          # Fetch alerts, mark as read
+├── routes/
+│   ├── __init__.py
+│   ├── alerts.py
+│   ├── analytics.py
+│   ├── auth.py
+│   ├── dashboard.py
+│   ├── patients.py
+│   ├── predictions.py
+│   └── ws.py
 │
-└── utils/                  # Utility functions
-    ├── validators.py      # Input validation, vital range checks
-    ├── helpers.py         # Common utility functions
-    └── constants.py       # Risk thresholds, vital ranges, defaults
+├── utils/
+│   ├── __init__.py
+│   ├── auth.py
+│   ├── scheduler.py
+│   ├── schemas.py
+│   └── ws.py
+│
+├── Dockerfile
+├── __init__.py
+├── app.py
+├── config.py
+└── requirements.txt
 ```
+
 
 ### Key Backend Files
 
@@ -86,61 +124,56 @@ backend/
 
 ## Frontend Structure
 
-### Overview
-
-React components organized by feature using Vite, Tailwind CSS, and Recharts for visualization.
-
 ```
-frontend/
+icu_system/frontend/
 ├── src/
-│   ├── components/         # Reusable React components
-│   │   ├── Dashboard.jsx   # Main dashboard view
-│   │   ├── PatientsList.jsx
+│   ├── components/
+│   │   ├── AlertsPanel.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── PatientCard.jsx
+│   │   ├── PredictionBadge.jsx
+│   │   ├── Sidebar.jsx
+│   │   ├── Timeline.jsx
+│   │   └── VitalsChart.jsx
+│   │
+│   ├── pages/
+│   │   ├── Analytics.jsx
+│   │   ├── Dashboard.jsx
+│   │   ├── Login.jsx
 │   │   ├── PatientDetail.jsx
-│   │   ├── VitalsChart.jsx
-│   │   ├── RiskTimeline.jsx
-│   │   └── AlertPanel.jsx
+│   │   ├── PatientList.jsx
+│   │   ├── Protocols.jsx
+│   │   └── QualityMetrics.jsx
 │   │
-│   ├── hooks/              # Custom React hooks
-│   │   ├── useWebSocket.js
-│   │   ├── useApi.js
-│   │   └── useLocalStorage.js
+│   ├── shared/
+│   │   ├── README.txt
+│   │   └── api.js
 │   │
-│   ├── services/           # API and external service clients
-│   │   ├── apiClient.js
-│   │   ├── websocketService.js
-│   │   └── authService.js
-│   │
-│   ├── utils/              # Utility functions
-│   │   ├── formatters.js
-│   │   ├── validators.js
-│   │   └── constants.js
-│   │
-│   ├── store/              # State management (Zustand/Redux)
-│   │   ├── patientStore.js
-│   │   ├── vitalsStore.js
-│   │   └── uiStore.js
-│   │
-│   ├── styles/             # CSS files
-│   │   ├── global.css
-│   │   └── theme.js
-│   │
-│   ├── pages/              # Page-level components
-│   │   ├── DashboardPage.jsx
-│   │   └── LoginPage.jsx
-│   │
-│   ├── App.jsx             # Root component
-│   └── main.jsx            # Entry point
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
 │
-├── public/                 # Static assets (images, icons)
-├── package.json            # Dependencies, scripts
-├── vite.config.js         # Vite bundler configuration
-├── tailwind.config.js     # Tailwind CSS customization
-├── postcss.config.js      # PostCSS setup for Tailwind
-├── Dockerfile             # Container image (Node build + nginx)
-├── nginx.conf            # Nginx configuration for production
-└── .env.example          # Environment variables template
+├── Dockerfile
+├── index.html
+├── nginx.conf
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── tailwind.config.js
+└── vite.config.js
 ```
+
+### Description
+
+* **components/** – Reusable UI components used throughout the application.
+* **pages/** – Route-level views and dashboard screens.
+* **shared/** – Shared utilities and API communication layer.
+* **App.jsx** – Root React application component.
+* **main.jsx** – Frontend entry point.
+* **Dockerfile** – Frontend container definition.
+* **nginx.conf** – Production web server configuration.
+
+---
 
 ### Key Frontend Files
 
@@ -157,20 +190,31 @@ frontend/
 
 ---
 
-## Documentation (docs/)
-
-Detailed guides and references for different aspects of the system.
+## Documentation Structure
 
 ```
-docs/
-├── PROJECT_STRUCTURE.md      # This file - detailed folder organization
-├── API.md                    # REST API endpoint reference
-├── ARCHITECTURE.md           # System design, data flow, ML pipeline
-├── DEPLOYMENT.md             # Docker, Railway, Render, AWS setup
-├── DEVELOPMENT.md            # Local development setup, testing
-├── ML_MODEL.md               # Model architecture, training, evaluation
-└── CLINICAL.md               # Risk thresholds, clinical interpretation
+icu_system/docs/
+├── api.md
+├── deployment.md
+├── implementation_summary.md
+├── interview_presentation.md
+├── patient_profiles.md
+├── project_structure.md
+└── user_guide.md
 ```
+
+### Documentation Files
+
+| File                      | Purpose                                                  |
+| ------------------------- | -------------------------------------------------------- |
+| api.md                    | API endpoint documentation and request/response formats  |
+| deployment.md             | Docker deployment and environment setup instructions     |
+| implementation_summary.md | Technical implementation overview and project highlights |
+| interview_presentation.md | Project presentation and interview preparation material  |
+| patient_profiles.md       | Sample ICU patient profiles and monitoring scenarios     |
+| project_structure.md      | Repository and folder organization documentation         |
+| user_guide.md             | End-user guide for operating the ICU monitoring system   |
+
 ---
 
 ## 📚 Documentation Files
