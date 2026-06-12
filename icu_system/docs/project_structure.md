@@ -202,19 +202,6 @@ icu_system/docs/
 ├── project_structure.md
 └── user_guide.md
 ```
-
-### Documentation Files
-
-| File                      | Purpose                                                  |
-| ------------------------- | -------------------------------------------------------- |
-| api.md                    | API endpoint documentation and request/response formats  |
-| deployment.md             | Docker deployment and environment setup instructions     |
-| implementation_summary.md | Technical implementation overview and project highlights |
-| interview_presentation.md | Project presentation and interview preparation material  |
-| patient_profiles.md       | Sample ICU patient profiles and monitoring scenarios     |
-| project_structure.md      | Repository and folder organization documentation         |
-| user_guide.md             | End-user guide for operating the ICU monitoring system   |
-
 ---
 
 ## 📚 Documentation Files
