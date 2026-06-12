@@ -147,105 +147,126 @@ The system predicts **24-36 hour patient deterioration risk**:
 ## 📂 Project Structure
 
 ```
+## Project Structure
+
+```text
 Multimodal-ICU-Patient-Monitoring/
 │
-├── backend/                        # FastAPI backend, ML models, database
-│   ├── app.py                      # Main FastAPI application
-│   ├── config.py                   # Configuration and settings
-│   ├── requirements.txt            # Python dependencies
-│   ├── Dockerfile                  # Backend container
-│   │
-│   ├── database/                   # Database layer
-│   │   ├── db.py                  # SQLAlchemy ORM setup
-│   │   ├── models.py              # Database models
-│   │   └── seed_data.py           # Test data generation
-│   │
-│   ├── ml/                         # Machine learning pipeline
-│   │   ├── preprocess.py          # Data preprocessing
-│   │   ├── train_model.py         # Model training
-│   │   ├── predict.py             # Prediction functions
-│   │   ├── retrain.py             # Retraining logic
-│   │   └── checkpoints/           # Model weights
-│   │
-│   ├── api/                        # REST API routes
-│   │   ├── patients.py            # Patient endpoints
-│   │   ├── vitals.py              # Vitals endpoints
-│   │   ├── predictions.py         # Prediction endpoints
-│   │   └── alerts.py              # Alert endpoints
-│   │
-│   └── utils/                      # Utility functions
-│       ├── validators.py          # Input validation
-│       ├── helpers.py             # Helper functions
-│       └── constants.py           # Constants
+├── backend/
+│   └── database/
+│       └── icu_monitoring.db
 │
-├── frontend/                       # React frontend application
-│   ├── src/
-│   │   ├── components/            # React components
-│   │   │   ├── Dashboard.jsx
-│   │   │   ├── PatientsList.jsx
-│   │   │   ├── PatientDetail.jsx
-│   │   │   ├── VitalsChart.jsx
-│   │   │   ├── RiskTimeline.jsx
-│   │   │   └── AlertPanel.jsx
-│   │   │
-│   │   ├── hooks/                 # Custom React hooks
-│   │   │   ├── useWebSocket.js
-│   │   │   ├── useApi.js
-│   │   │   └── useLocalStorage.js
-│   │   │
-│   │   ├── services/              # API clients
-│   │   │   ├── apiClient.js
-│   │   │   ├── websocketService.js
-│   │   │   └── authService.js
-│   │   │
-│   │   ├── utils/                 # Utility functions
-│   │   │   ├── formatters.js
-│   │   │   ├── validators.js
-│   │   │   └── constants.js
-│   │   │
-│   │   ├── store/                 # State management
-│   │   │   ├── patientStore.js
-│   │   │   ├── vitalsStore.js
-│   │   │   └── uiStore.js
-│   │   │
-│   │   ├── styles/                # CSS files
-│   │   │   ├── global.css
-│   │   │   └── theme.js
-│   │   │
-│   │   ├── pages/                 # Page components
-│   │   │   ├── DashboardPage.jsx
-│   │   │   └── LoginPage.jsx
-│   │   │
-│   │   ├── App.jsx
-│   │   └── main.jsx
+├── icu_system/
 │   │
-│   ├── public/                    # Static assets
-│   ├── package.json
-│   ├── vite.config.js
-│   ├── tailwind.config.js
-│   ├── postcss.config.js
-│   ├── Dockerfile
-│   ├── nginx.conf
-│   └── .env.example
+│   ├── backend/
+│   │   │
+│   │   ├── database/
+│   │   │   ├── migrations/
+│   │   │   │   └── 001_init.sql
+│   │   │   ├── __init__.py
+│   │   │   ├── db.py
+│   │   │   └── seed_data.py
+│   │   │
+│   │   ├── ml/
+│   │   │   ├── checkpoints/
+│   │   │   │   └── README.txt
+│   │   │   ├── __init__.py
+│   │   │   ├── models.py
+│   │   │   ├── predict.py
+│   │   │   ├── preprocess.py
+│   │   │   ├── retrain.py
+│   │   │   └── train_model.py
+│   │   │
+│   │   ├── models/
+│   │   │   ├── __init__.py
+│   │   │   ├── diagnosis.py
+│   │   │   ├── intervention.py
+│   │   │   ├── labs.py
+│   │   │   ├── medication.py
+│   │   │   ├── notes.py
+│   │   │   ├── nursing_assessment.py
+│   │   │   ├── patient.py
+│   │   │   ├── prediction.py
+│   │   │   ├── procedure.py
+│   │   │   ├── user.py
+│   │   │   └── vitals.py
+│   │   │
+│   │   ├── routes/
+│   │   │   ├── __init__.py
+│   │   │   ├── alerts.py
+│   │   │   ├── analytics.py
+│   │   │   ├── auth.py
+│   │   │   ├── dashboard.py
+│   │   │   ├── patients.py
+│   │   │   ├── predictions.py
+│   │   │   └── ws.py
+│   │   │
+│   │   ├── utils/
+│   │   │   ├── __init__.py
+│   │   │   ├── auth.py
+│   │   │   ├── scheduler.py
+│   │   │   ├── schemas.py
+│   │   │   └── ws.py
+│   │   │
+│   │   ├── Dockerfile
+│   │   ├── __init__.py
+│   │   ├── app.py
+│   │   ├── config.py
+│   │   └── requirements.txt
+│   │
+│   ├── docs/
+│   │   ├── api.md
+│   │   ├── deployment.md
+│   │   ├── implementation_summary.md
+│   │   ├── interview_presentation.md
+│   │   ├── patient_profiles.md
+│   │   ├── project_structure.md
+│   │   └── user_guide.md
+│   │
+│   ├── frontend/
+│   │   ├── src/
+│   │   │   ├── components/
+│   │   │   │   ├── AlertsPanel.jsx
+│   │   │   │   ├── Navbar.jsx
+│   │   │   │   ├── PatientCard.jsx
+│   │   │   │   ├── PredictionBadge.jsx
+│   │   │   │   ├── Sidebar.jsx
+│   │   │   │   ├── Timeline.jsx
+│   │   │   │   └── VitalsChart.jsx
+│   │   │   │
+│   │   │   ├── pages/
+│   │   │   │   ├── Analytics.jsx
+│   │   │   │   ├── Dashboard.jsx
+│   │   │   │   ├── Login.jsx
+│   │   │   │   ├── PatientDetail.jsx
+│   │   │   │   ├── PatientList.jsx
+│   │   │   │   ├── Protocols.jsx
+│   │   │   │   └── QualityMetrics.jsx
+│   │   │   │
+│   │   │   ├── shared/
+│   │   │   │   ├── README.txt
+│   │   │   │   └── api.js
+│   │   │   │
+│   │   │   ├── App.jsx
+│   │   │   ├── index.css
+│   │   │   └── main.jsx
+│   │   │
+│   │   ├── Dockerfile
+│   │   ├── index.html
+│   │   ├── nginx.conf
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── postcss.config.js
+│   │   ├── tailwind.config.js
+│   │   └── vite.config.js
+│   │
+│   └── docker-compose.yml
 │
-├── docs/                          # Documentation
-│   ├── PROJECT_STRUCTURE.md       # This file - detailed structure
-│   ├── API.md                     # API endpoints
-│   ├── ARCHITECTURE.md            # System design
-│   ├── DEPLOYMENT.md              # Deployment guides
-│   ├── DEVELOPMENT.md             # Dev setup
-│   ├── ML_MODEL.md                # ML details
-│   └── CLINICAL.md                # Clinical info
-│
-├── docker-compose.yml             # Docker compose config
-├── .gitignore                     # Git ignore rules
-├── README.md                      # This file
-├── LICENSE                        # MIT License
-├── IMPLEMENTATION_SUMMARY.md      # Implementation overview
-├── INTERVIEW_PRESENTATION.md      # Presentation materials
-├── PATIENT_PROFILES.md            # Sample patients
-├── USER_GUIDE.md                  # User guide
-└── package-lock.json              # Node dependencies lock
+├── README.md            
+├──.gitignore
+└── package-lock.json
+```
+
 ```
 
 **[View detailed structure →](icu_system/docs/project_structure.md)**
