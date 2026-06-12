@@ -147,7 +147,6 @@ The system predicts **24-36 hour patient deterioration risk**:
 ## 📂 Project Structure
 
 ```
-## Project Structure
 
 Multimodal-ICU-Patient-Monitoring/
 │
