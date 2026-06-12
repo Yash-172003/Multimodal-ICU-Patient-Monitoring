@@ -259,9 +259,10 @@ Multimodal-ICU-Patient-Monitoring/
 │   │   └── vite.config.js
 │   │
 │   └── docker-compose.yml
-│
-├── README.md            
+│            
 ├──.gitignore
+├── LICENSE
+├── README.md
 └── package-lock.json
 
 ```
