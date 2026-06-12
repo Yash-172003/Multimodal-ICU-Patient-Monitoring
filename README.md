@@ -442,6 +442,12 @@ GitHub: [@Yash-172003](https://github.com/Yash-172003)
 
 ---
 
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
+
 <div align="center">
 
 **Made with ❤️ for ICU care and patient safety**
