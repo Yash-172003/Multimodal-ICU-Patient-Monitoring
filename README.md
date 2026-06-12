@@ -149,7 +149,6 @@ The system predicts **24-36 hour patient deterioration risk**:
 ```
 ## Project Structure
 
-```text
 Multimodal-ICU-Patient-Monitoring/
 │
 ├── backend/
@@ -265,7 +264,6 @@ Multimodal-ICU-Patient-Monitoring/
 ├── README.md            
 ├──.gitignore
 └── package-lock.json
-```
 
 ```
 
