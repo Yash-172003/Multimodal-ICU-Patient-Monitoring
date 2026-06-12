@@ -76,20 +76,6 @@ Done! Open your browser:
 
 ---
 
-## 📚 Documentation
-
-| Document | Purpose |
-|----------|---------|
-| **[Project Structure](docs/PROJECT_STRUCTURE.md)** | Folder organization, file purposes, dev practices |
-| **[API Reference](docs/API.md)** | Endpoint documentation, request/response examples |
-| **[Architecture](docs/ARCHITECTURE.md)** | System design, data flow, ML pipeline |
-| **[Deployment](docs/DEPLOYMENT.md)** | Docker, Railway, Render, AWS setup |
-| **[Development](docs/DEVELOPMENT.md)** | Local setup, testing, debugging |
-| **[ML Model](docs/ML_MODEL.md)** | Model architecture, training, evaluation |
-| **[Clinical Guide](docs/CLINICAL.md)** | Risk interpretation, thresholds, clinical context |
-
----
-
 ## 🎮 Demo Walkthrough
 
 ### 1. Load Sample Data
@@ -203,7 +189,7 @@ alembic upgrade head
 alembic revision --autogenerate -m "Add new column"
 ```
 
-See [DEVELOPMENT.md](docs/DEVELOPMENT.md) for detailed setup.
+See [deployment.md](icu_system/docs/deployment.md) for detailed setup.
 
 ---
 
@@ -220,7 +206,7 @@ docker compose up --build
 3. Add frontend service (expose port 80)
 4. Set environment variables
 
-See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for Railway, Render, AWS guides.
+See [deployment.md](icu_system/docs/deployment.md) for Railway, Render, AWS guides.
 
 ---
 
@@ -263,23 +249,11 @@ The risk scores represent statistical predictions based on the training data and
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
----
-
 ## 👥 Authors
 
 - **Yash** — [GitHub](https://github.com/Yash-172003)
 
----
-
-## 💬 Questions & Support
-
-- 📖 [Read the docs](docs/)
-- 🐛 [Report an issue](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/issues)
-- 💡 [Suggest a feature](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/discussions)
+💡 [Suggest a feature](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/discussions)
 
 ---
 
