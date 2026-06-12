@@ -5,8 +5,9 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-00a393.svg)](https://fastapi.tiangolo.com/)
 [![React 18+](https://img.shields.io/badge/react-18+-61dafb.svg)](https://react.dev/)
 [![Docker](https://img.shields.io/badge/docker-ready-2496ed.svg)](https://www.docker.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**AI-powered ICU patient monitoring system** with real-time vitals tracking, multimodal risk prediction, and an interactive clinical dashboard.
+**AI-powered multimodal ICU patient monitoring system** with real-time vitals tracking, deep learning risk prediction, and an interactive clinical dashboard.
 
 ## 🎯 Overview
 
@@ -17,7 +18,7 @@ A full-stack system that combines **temporal vital sign analysis** (LSTM) with *
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
 - 🔴 **Real-time Monitoring** — Live vital signs streaming via WebSocket (HR, BP, SpO₂, RR, Temp)
 - 🤖 **Multimodal AI** — LSTM (temporal patterns) + ClinicalBERT (clinical context) fusion network
@@ -53,54 +54,45 @@ cp frontend/.env.example frontend/.env
 docker compose up --build
 ```
 
-Done! Open your browser:
+**Done!** Open your browser:
 
 | Service | URL |
 |---------|-----|
 | **Dashboard** | http://localhost:8080 |
-| **API** | http://localhost:8000 |
-| **API Docs** | http://localhost:8000/docs |
+| **Backend API** | http://localhost:8000 |
+| **API Docs (Swagger)** | http://localhost:8000/docs |
+| **API ReDoc** | http://localhost:8000/redoc |
 
 ---
 
-## 💻 Stack
+## 📚 Documentation
 
-| Layer | Tech |
-|-------|------|
-| **Frontend** | React 18, Vite, Tailwind CSS, Recharts |
-| **Backend** | FastAPI, SQLAlchemy, Pydantic |
+| Document | Purpose | Link |
+|----------|---------|------|
+| **Project Structure** | Folder organization, file purposes, dev practices | [View](docs/PROJECT_STRUCTURE.md) |
+| **API Reference** | Endpoint documentation, request/response examples | [View](docs/API.md) |
+| **Architecture** | System design, data flow, ML pipeline | [View](docs/ARCHITECTURE.md) |
+| **Deployment** | Docker, Railway, Render, AWS setup | [View](docs/DEPLOYMENT.md) |
+| **Development** | Local setup, testing, debugging | [View](docs/DEVELOPMENT.md) |
+| **ML Model** | Model architecture, training, evaluation | [View](docs/ML_MODEL.md) |
+| **Clinical Guide** | Risk interpretation, thresholds, clinical context | [View](docs/CLINICAL.md) |
+| **Implementation Summary** | Project overview and implementation details | [View](IMPLEMENTATION_SUMMARY.md) |
+| **Interview Presentation** | Project presentation materials | [View](INTERVIEW_PRESENTATION.md) |
+| **Patient Profiles** | Sample patient data and use cases | [View](PATIENT_PROFILES.md) |
+| **User Guide** | How to use the system | [View](USER_GUIDE.md) |
+
+---
+
+## 💻 Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| **Frontend** | React 18, Vite, Tailwind CSS, Recharts, Axios |
+| **Backend** | FastAPI, SQLAlchemy, Pydantic, APScheduler |
 | **ML** | PyTorch, HuggingFace Transformers (ClinicalBERT), scikit-learn |
-| **Real-time** | WebSocket, APScheduler |
-| **Database** | SQLite / PostgreSQL |
-| **DevOps** | Docker, Nginx, Docker Compose |
-
----
-
-## 🎮 Demo Walkthrough
-
-### 1. Load Sample Data
-```bash
-# Inside backend container or venv
-python -m backend.database.seed_data
-```
-Creates 5 synthetic patients with realistic vitals.
-
-### 2. Train Model
-```bash
-python -m backend.ml.train_model
-```
-Trains multimodal LSTM + ClinicalBERT on synthetic data (~2-5 min).
-
-### 3. Generate Predictions
-```bash
-python -m backend.ml.predict predict_all
-```
-Computes risk scores for all patients.
-
-### 4. View Dashboard
-- Navigate to **http://localhost:8080**
-- Select a patient to see live vitals and risk trajectory
-- Check alerts for high-risk cases
+| **Real-time** | WebSocket, Socket.io |
+| **Database** | SQLite (dev) / PostgreSQL (production) |
+| **DevOps** | Docker, Docker Compose, Nginx |
 
 ---
 
@@ -142,29 +134,167 @@ Computes risk scores for all patients.
 
 The system predicts **24-36 hour patient deterioration risk**:
 
-| Score | Category | Action |
-|-------|----------|--------|
-| **< 40%** | ✅ Low | Routine monitoring |
-| **40-69%** | ⚠️ Medium | Increased vigilance |
-| **≥ 70%** | 🔴 High | Escalate care, alerts |
+| Score | Category | Interpretation | Action |
+|-------|----------|----------------|--------|
+| **< 40%** | ✅ Low | Stable condition | Routine monitoring |
+| **40-69%** | ⚠️ Medium | Elevated risk | Increased vigilance |
+| **≥ 70%** | 🔴 High | Critical risk | Escalate care, immediate alerts |
 
-**Factors Considered:**
-- Vital sign trends (heart rate, BP, O₂ sat)
-- Rate of change (acceleration/deceleration)
-- Clinical notes context (via ClinicalBERT)
+**Key Factors Considered:**
+- Vital sign trends (heart rate, blood pressure, oxygen saturation)
+- Rate of change (acceleration/deceleration patterns)
+- Clinical notes context (via ClinicalBERT semantic analysis)
 - Patient history and comorbidities
 
 ---
 
-## 🛠️ Development
+## 📂 Project Structure
 
-### Run Locally (Without Docker)
+```
+Multimodal-ICU-Patient-Monitoring/
+│
+├── backend/                        # FastAPI backend, ML models, database
+│   ├── app.py                      # Main FastAPI application
+│   ├── config.py                   # Configuration and settings
+│   ├── requirements.txt            # Python dependencies
+│   ├── Dockerfile                  # Backend container
+│   │
+│   ├── database/                   # Database layer
+│   │   ├── db.py                  # SQLAlchemy ORM setup
+│   │   ├── models.py              # Database models
+│   │   └── seed_data.py           # Test data generation
+│   │
+│   ├── ml/                         # Machine learning pipeline
+│   │   ├── preprocess.py          # Data preprocessing
+│   │   ├── train_model.py         # Model training
+│   │   ├── predict.py             # Prediction functions
+│   │   ├── retrain.py             # Retraining logic
+│   │   └── checkpoints/           # Model weights
+│   │
+│   ├── api/                        # REST API routes
+│   │   ├── patients.py            # Patient endpoints
+│   │   ├── vitals.py              # Vitals endpoints
+│   │   ├── predictions.py         # Prediction endpoints
+│   │   └── alerts.py              # Alert endpoints
+│   │
+│   └── utils/                      # Utility functions
+│       ├── validators.py          # Input validation
+│       ├── helpers.py             # Helper functions
+│       └── constants.py           # Constants
+│
+├── frontend/                       # React frontend application
+│   ├── src/
+│   │   ├── components/            # React components
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── PatientsList.jsx
+│   │   │   ├── PatientDetail.jsx
+│   │   │   ├── VitalsChart.jsx
+│   │   │   ├── RiskTimeline.jsx
+│   │   │   └── AlertPanel.jsx
+│   │   │
+│   │   ├── hooks/                 # Custom React hooks
+│   │   │   ├── useWebSocket.js
+│   │   │   ├── useApi.js
+│   │   │   └── useLocalStorage.js
+│   │   │
+│   │   ├── services/              # API clients
+│   │   │   ├── apiClient.js
+│   │   │   ├── websocketService.js
+│   │   │   └── authService.js
+│   │   │
+│   │   ├── utils/                 # Utility functions
+│   │   │   ├── formatters.js
+│   │   │   ├── validators.js
+│   │   │   └── constants.js
+│   │   │
+│   │   ├── store/                 # State management
+│   │   │   ├── patientStore.js
+│   │   │   ├── vitalsStore.js
+│   │   │   └── uiStore.js
+│   │   │
+│   │   ├── styles/                # CSS files
+│   │   │   ├── global.css
+│   │   │   └── theme.js
+│   │   │
+│   │   ├── pages/                 # Page components
+│   │   │   ├── DashboardPage.jsx
+│   │   │   └── LoginPage.jsx
+│   │   │
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   │
+│   ├── public/                    # Static assets
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── tailwind.config.js
+│   ├── postcss.config.js
+│   ├── Dockerfile
+│   ├── nginx.conf
+│   └── .env.example
+│
+├── docs/                          # Documentation
+│   ├── PROJECT_STRUCTURE.md       # This file - detailed structure
+│   ├── API.md                     # API endpoints
+│   ├── ARCHITECTURE.md            # System design
+│   ├── DEPLOYMENT.md              # Deployment guides
+│   ├── DEVELOPMENT.md             # Dev setup
+│   ├── ML_MODEL.md                # ML details
+│   └── CLINICAL.md                # Clinical info
+│
+├── docker-compose.yml             # Docker compose config
+├── .gitignore                     # Git ignore rules
+├── README.md                      # This file
+├── LICENSE                        # MIT License
+├── IMPLEMENTATION_SUMMARY.md      # Implementation overview
+├── INTERVIEW_PRESENTATION.md      # Presentation materials
+├── PATIENT_PROFILES.md            # Sample patients
+├── USER_GUIDE.md                  # User guide
+└── package-lock.json              # Node dependencies lock
+```
+
+**[View detailed structure →](docs/PROJECT_STRUCTURE.md)**
+
+---
+
+## 🎮 Demo Walkthrough
+
+### 1. Load Sample Data
+```bash
+# Inside backend container
+python -m backend.database.seed_data
+```
+Creates 5 synthetic patients with realistic vitals.
+
+### 2. Train ML Model
+```bash
+python -m backend.ml.train_model
+```
+Trains multimodal LSTM + ClinicalBERT fusion on synthetic data.
+
+### 3. Generate Predictions
+```bash
+python -m backend.ml.predict predict_all
+```
+Computes risk scores for all patients.
+
+### 4. View Dashboard
+Navigate to **http://localhost:8080** and explore:
+- Patient list with risk summary
+- Real-time vital signs
+- Risk trajectory
+- Alert notifications
+
+---
+
+## 💻 Development
+
+### Run Locally Without Docker
 
 **Backend:**
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+source venv/bin/activate          # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 uvicorn app:app --reload --port 8000
 ```
@@ -173,99 +303,170 @@ uvicorn app:app --reload --port 8000
 ```bash
 cd frontend
 npm install
-npm run dev
+npm run dev                        # Runs on http://localhost:5173
 ```
 
 ### Run Tests
 ```bash
-pytest backend/tests/
-npm run test  # frontend
+cd backend
+pytest tests/
+
+cd frontend
+npm run test
 ```
 
 ### Database Migrations
 ```bash
 # If using Alembic
 alembic upgrade head
-alembic revision --autogenerate -m "Add new column"
+alembic revision --autogenerate -m "Your message"
 ```
 
-See [deployment.md](icu_system/docs/deployment.md) for detailed setup.
+See [DEVELOPMENT.md](docs/DEVELOPMENT.md) for detailed setup.
 
 ---
 
 ## 🚢 Deployment
 
-### Docker Compose (Local)
+### Docker Compose (Local Development)
 ```bash
 docker compose up --build
 ```
 
-### Railway
-1. Create new project from this repo
-2. Add backend service (expose port 8000)
-3. Add frontend service (expose port 80)
-4. Set environment variables
+### Cloud Platforms
 
-See [deployment.md](icu_system/docs/deployment.md) for Railway, Render, AWS guides.
+**Railway**
+1. Connect your GitHub repo to Railway
+2. Create backend service from `backend/Dockerfile`
+3. Create frontend service from `frontend/Dockerfile`
+4. Set environment variables (DATABASE_URL, CORS origins, etc.)
 
----
+**Render**
+- Backend: Create Web Service with `backend/Dockerfile`, expose port 8000
+- Frontend: Create Static Site with `frontend/` or Docker Web Service with `frontend/Dockerfile`
 
-## 📊 Project Structure
-
-```
-Multimodal-ICU-Patient-Monitoring/
-├── backend/              # FastAPI, ML, database
-├── frontend/             # React dashboard
-├── docs/                 # Documentation
-├── docker-compose.yml    # Local orchestration
-└── README.md            # This file
-```
-
-**[View full structure →](docs/PROJECT_STRUCTURE.md)**
+**AWS/GCP/Azure**
+See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed cloud setup guides.
 
 ---
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+We welcome contributions! Here's how to help:
 
-**Guidelines:**
-- Follow PEP 8 (Python) and ESLint (JavaScript)
-- Add tests for new features
-- Update documentation if needed
-- Keep commits focused and well-described
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
 
----
+### Development Guidelines
 
-## 📖 Clinical Disclaimer
+- **Backend**: Follow PEP 8, write async functions, add docstrings
+- **Frontend**: Use functional components with Hooks, follow ESLint rules
+- **ML**: Log predictions, version checkpoints, test with synthetic data
+- **Tests**: Write tests for new features, maintain >80% coverage
+- **Docs**: Update relevant documentation when adding features
 
-⚠️ **This system is for research and decision support only.** It should not replace clinical judgment. Always consult with medical professionals for patient care decisions.
-
-The risk scores represent statistical predictions based on the training data and should be interpreted in clinical context.
+See [DEVELOPMENT.md](docs/DEVELOPMENT.md) for detailed guidelines.
 
 ---
 
-## 👥 Authors
+## 📊 Project Statistics
 
-- **Yash** — [GitHub](https://github.com/Yash-172003)
+- **Backend**: Python, FastAPI, 45.3% of codebase
+- **Frontend**: JavaScript/React, 52.9% of codebase
+- **Styling**: CSS/Tailwind, 1.2% of codebase
+- **Status**: Active development, 25+ commits
+- **License**: MIT (Open source)
 
-💡 [Suggest a feature](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/discussions)
+---
+
+## 📖 Documentation Files
+
+### In Repository Root
+- **[README.md](README.md)** — This file, quick start and overview
+- **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)** — Technical implementation details
+- **[INTERVIEW_PRESENTATION.md](INTERVIEW_PRESENTATION.md)** — Presentation materials for interviews
+- **[PATIENT_PROFILES.md](PATIENT_PROFILES.md)** — Sample patient use cases
+- **[USER_GUIDE.md](USER_GUIDE.md)** — End-user guide and tutorials
+
+### In docs/ Directory
+- **[PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md)** — Complete folder organization guide
+- **[API.md](docs/API.md)** — REST API endpoint reference
+- **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** — System design and data flow
+- **[DEPLOYMENT.md](docs/DEPLOYMENT.md)** — Deployment and infrastructure guides
+- **[DEVELOPMENT.md](docs/DEVELOPMENT.md)** — Developer setup and testing
+- **[ML_MODEL.md](docs/ML_MODEL.md)** — Machine learning model details
+- **[CLINICAL.md](docs/CLINICAL.md)** — Clinical interpretation and thresholds
+
+---
+
+## ⚖️ Clinical Disclaimer
+
+⚠️ **IMPORTANT**: This system is for **research and decision support only**. It is **NOT** a replacement for clinical judgment.
+
+Always consult with qualified medical professionals before making patient care decisions. The risk scores represent statistical predictions and should be interpreted within clinical context.
+
+This system has NOT been validated for production clinical use without proper regulatory approval and clinical validation.
+
+---
+
+## 👥 Author
+
+**Yash** — Full-stack Developer & ML Engineer  
+GitHub: [@Yash-172003](https://github.com/Yash-172003)
+
+---
+
+## 💬 Support & Questions
+
+- 📖 **Read the Docs**: Check [docs/](docs/) for comprehensive guides
+- 🐛 **Report Issues**: [GitHub Issues](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/issues)
+- 💡 **Discussions**: [GitHub Discussions](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring/discussions)
+- 📧 **Contact**: Open an issue or discussion for questions
 
 ---
 
 ## 🙏 Acknowledgments
 
-- **ClinicalBERT** — Medical text understanding from HuggingFace
-- **MIMIC-IV** — Critical care data research inspiration
-- **FastAPI** — Modern Python web framework
-- **React** — UI library
+- **ClinicalBERT** — HuggingFace Transformers for medical NLP
+- **MIMIC-IV** — Critical care dataset that inspired this project
+- **FastAPI** — Modern, fast Python web framework
+- **React** — UI library for interactive dashboards
+- **PyTorch** — Deep learning framework
 
 ---
 
-**Made with ❤️ for ICU care**
+## 📈 Roadmap
+
+- [ ] Integrate with EHR systems (Epic, Cerner)
+- [ ] Mobile app (React Native)
+- [ ] Real-time alerts via SMS/push notifications
+- [ ] Multi-hospital analytics dashboard
+- [ ] HIPAA compliance certification
+- [ ] FDA validation and approval
+- [ ] Explainability features (LIME, SHAP)
+- [ ] Additional risk predictions (infection, sepsis, etc.)
+
+---
+
+## 🎯 Next Steps
+
+1. **Explore**: Browse the [Project Structure](docs/PROJECT_STRUCTURE.md)
+2. **Learn**: Read the [Architecture Guide](docs/ARCHITECTURE.md)
+3. **Setup**: Follow the [Quick Start](#quick-start) above
+4. **Develop**: See [DEVELOPMENT.md](docs/DEVELOPMENT.md) for dev guidelines
+5. **Deploy**: Use [DEPLOYMENT.md](docs/DEPLOYMENT.md) for cloud setup
+
+---
+
+<div align="center">
+
+**Made with ❤️ for ICU care and patient safety**
+
+[⭐ Star us on GitHub!](https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring)
 
 *Last updated: June 2026*
+
+</div>
