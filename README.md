@@ -2,6 +2,8 @@
 
 A full-stack ICU Monitoring System with real-time dashboard, multimodal ML risk prediction, and retrospective analysis.
 
+Repository: https://github.com/Yash-172003/Multimodal-ICU-Patient-Monitoring
+
 ## Overview
 - FastAPI backend with SQLite (or PostgreSQL) and SQLAlchemy models
 - Multimodal ML: Vitals LSTM + ClinicalBERT encoder + Fusion network
@@ -149,6 +151,4 @@ Multimodal-ICU-Patient-Monitoring/
 ├── package-lock.json
 ├── .gitignore
 └── LICENSE
-```
-
 ```
